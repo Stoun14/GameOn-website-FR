@@ -38,6 +38,32 @@ for (let idx = 0; idx < listeBtnradio.length; idx++) {
     })
 } */
 
+/* form.addEventListener("submit", (event) => {
+    
+  event.preventDefault();
+
+  const first = document.getElementById("first").value
+
+  const last = document.getElementById("last").value
+
+  const email = document.getElementById("email").value
+
+  const birthdate = document.getElementById("birthdate").value
+
+  const quantity = document.getElementById("quantity").value
+
+  let listeBtnradio = document.querySelectorAll(".formData input")
+  for (let idx = 0; idx < listeBtnradio.length; idx++) {
+      listeBtnradio[idx].addEventListener("change", (event)=>{
+          let location = event.target.value
+      })
+  }
+
+  const checkbox1 = document.getElementById("checkbox1").checked
+
+  const checkbox2 = document.getElementById("checkbox2").checked
+}); */
+
 let listeBtnradio = document.querySelectorAll('input[name="location"]')
 var location = ""
 for (let i = 0; i < listeBtnradio.length; i++) {
