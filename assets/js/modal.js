@@ -27,16 +27,6 @@ function mailcontrol(balise) {
   }
 }
 
-function datecontrol(balise) {
-  let regex = new RegExp("^\d+/");
-  if (regex.test(balise)) {
-    return true;
-  } else {
-    //alert('Le champ doit contenir une date valide')
-    return false;
-  }
-}
-
 function numbercontrol(balise) {
   let regex = new RegExp("\d{2}");
   if (regex.test(balise)) {
@@ -51,11 +41,17 @@ function validate() {
   const first = document.getElementById("first").value;
   const last = document.getElementById("last").value;
   const email = document.getElementById("email").value;
+  const birthdate = document.getElementById("birthdate").value
+  const quantity = document.getElementById("quantity").value
   
   if (namecontrol(first)) {
     if (namecontrol(last)) {
       if (mailcontrol(email)) {
-        return true;
+        if (numbercontrol(quantity)) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }
