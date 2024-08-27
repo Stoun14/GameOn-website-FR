@@ -7,17 +7,18 @@ function editNav() {
   }
 }
 
-function namecontrol(balise) {
-  let regex = new RegExp("[a-zA-Z\-]{2,}");
-  if (regex.test(balise)) {
+function nameControl(balise) {
+  let regex = new RegExp("^[a-zA-Z\-]{2,}$");
+  if (regex.test(balise)) {    
     return true;
   } else {
-    // alert('Les champs nom et prénom doivent contenir au moins 2 lettres')
     return false;
-  }
+    /* alert('Les champs Prénom et Nom doivent contenir uniquement les caractères de a à z ou -');
+    return false; */
+  }  
 }
 
-function mailcontrol(balise) {
+function mailControl(balise) {
   let regex = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+");
   if (regex.test(balise)) {
     return true;
@@ -27,40 +28,58 @@ function mailcontrol(balise) {
   }
 }
 
-function numbercontrol(balise) {
-  let regex = new RegExp("\d{2}");
+function numberControl(balise) {
+  let regex = new RegExp("\d");
   if (regex.test(balise)) {
     return true;
   } else {
-    //alert('Le champ doit contenir une quantité valide')
+    //alert('Le champ doit contenir une valeur numérique')
     return false;
   }
 }
 
+function radioBtn() {
+  let listeBtnradio = document.querySelectorAll('input[name="location"]')
+  var location = ""
+  for (let i = 0; i < listeBtnradio.length; i++) {
+      if (listeBtnradio[i].checked) {
+        location = listeBtnradio[i].value
+        return location
+      }
+  }
+}
+
 function validate() {
-  const first = document.getElementById("first").value;
-  const last = document.getElementById("last").value;
-  const email = document.getElementById("email").value;
-  const birthdate = document.getElementById("birthdate").value
-  const quantity = document.getElementById("quantity").value
+  /*const firstValue = document.getElementById("first").value;
+  const lastValue = document.getElementById("last").value;
+  const emailValue = document.getElementById("email").value;
+  const quantity = document.getElementById("quantity").value;
+  const town = radioBtn();
+  const checkbox1 = document.getElementById("checkbox1").checked;
+  const checkbox2 = document.getElementById("checkbox2").checked; */
   
-  if (namecontrol(first)) {
-    if (namecontrol(last)) {
-      if (mailcontrol(email)) {
-        if (numbercontrol(quantity)) {
-          return true;
+  /*if (nameControl(firstValue)) {    
+    if (nameControl(lastValue)) {      
+      if (mailControl(emailValue)) {        
+        if (numberControl(quantity)) {
+          console.log("test concluant");
+          if (town !== "") {
+            return true
+          } else {
+            return false
+          }
         } else {
-          return false;
+          console.log("mauvaise quantité")
         }
       } else {
-        return false;
-      }
+        console.log("mauvais email")
+      } 
     } else {
-      return false;
+      console.log("mauvais nom")
     }
   } else {
-    return false;
-  }  
+    console.log("mauvais prénom");
+  }*/  
 }
 
 // DOM Elements
