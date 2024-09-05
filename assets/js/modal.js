@@ -1,3 +1,12 @@
+// DOM Elements
+const modalbg = document.querySelector(".bground");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
+const closeBtn = document.querySelectorAll(".close");
+const modalValid = document.querySelector('#modal-valid');
+const form = document.querySelector("#reserve");
+const validationBtn = document.querySelector("#btn");
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -7,14 +16,24 @@ function editNav() {
   }
 }
 
+function validationModal() {
+  // Cacher le formulaire
+  form.style.display = 'none';
+  // Afficher le message de confirmation
+  modalValid.style.display = 'flex';
+  // Gestion du clic sur le bouton
+  btn.addEventListener('click', function(event) {
+    // Fermeture de la modale
+    closeModal();
+  });
+}
+
 function nameControl(balise) {
   let regex = new RegExp("^[a-zA-Z\-]{2,}$");
   if (regex.test(balise)) {    
     return true;
   } else {
     return false;
-    /* alert('Les champs Prénom et Nom doivent contenir uniquement les caractères de a à z ou -');
-    return false; */
   }  
 }
 
@@ -23,17 +42,15 @@ function mailControl(balise) {
   if (regex.test(balise)) {
     return true;
   } else {
-    //alert('Le champ doit contenir une adresse email valide')
     return false;
   }
 }
 
 function numberControl(balise) {
-  let regex = new RegExp("\d");
+  let regex = new RegExp("^[0-9]{1,2}$");
   if (regex.test(balise)) {
     return true;
   } else {
-    //alert('Le champ doit contenir une valeur numérique')
     return false;
   }
 }
@@ -49,45 +66,53 @@ function radioBtn() {
   }
 }
 
-function validate() {
-  /*const firstValue = document.getElementById("first").value;
+// Sélection du formulaire et ajout du gestionnaire d'événement de soumission
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const firstValue = document.getElementById("first").value;
   const lastValue = document.getElementById("last").value;
   const emailValue = document.getElementById("email").value;
   const quantity = document.getElementById("quantity").value;
   const town = radioBtn();
   const checkbox1 = document.getElementById("checkbox1").checked;
-  const checkbox2 = document.getElementById("checkbox2").checked; */
-  
-  /*if (nameControl(firstValue)) {    
-    if (nameControl(lastValue)) {      
-      if (mailControl(emailValue)) {        
+  let error = document.querySelector('.firstname');
+  if (nameControl(firstValue)) {
+    if (nameControl(lastValue)) {
+      if (mailControl(emailValue)) {
         if (numberControl(quantity)) {
-          console.log("test concluant");
-          if (town !== "") {
-            return true
+          if (checkbox1 === true) {
+            if (town !== "") {
+              validationModal();
+            } else {
+              let error = document.querySelector('.town');
+              error.setAttribute('data-error-visible', 'true');
+            }
           } else {
-            return false
-          }
+            let error = document.querySelector('.cgu');
+            error.setAttribute('data-error-visible', 'true');
+          } 
         } else {
-          console.log("mauvaise quantité")
+          let error = document.querySelector('.tournament');
+          error.setAttribute('data-error-visible', 'true');
         }
       } else {
-        console.log("mauvais email")
-      } 
+        let error = document.querySelector('.email');
+        error.setAttribute('data-error-visible', 'true');
+      }
     } else {
-      console.log("mauvais nom")
+      let error = document.querySelector('.lastname');
+      error.setAttribute('data-error-visible', 'true');
     }
   } else {
-    console.log("mauvais prénom");
-  }*/  
-}
+    error.setAttribute('data-error-visible', 'true');
+  }
+  
+});
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelectorAll(".close");
-const form = document.querySelector("form")
+/*function validate() {
+
+}*/
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -96,38 +121,6 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
-
-
-
-/*form.addEventListener("submit", (event) => {
-    
-  event.preventDefault();
-
-  const first = document.getElementById("first").value
-  namecontrol(first)  
-
-  const last = document.getElementById("last").value
-  namecontrol(last)
-
-  const email = document.getElementById("email").value
-
-  const birthdate = document.getElementById("birthdate").value
-
-  const quantity = document.getElementById("quantity").value
-
-  let listeBtnradio = document.querySelectorAll('input[name="location"]')
-  var location = ""
-  for (let i = 0; i < listeBtnradio.length; i++) {
-      if (listeBtnradio[i].checked) {
-        location = listeBtnradio[i].value
-          break
-      }
-  }
-
-  const checkbox1 = document.getElementById("checkbox1").checked
-
-  const checkbox2 = document.getElementById("checkbox2").checked */
-
 
 // close modal event
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));

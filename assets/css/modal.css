@@ -92,7 +92,7 @@ img {
 
 
 
- @media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -186,6 +186,21 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  height: 810px;
+}
+
+#modal-valid {
+  position: relative;
+  display: none;
+  height: 100%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-valid #btn {
+  position: absolute;
+  bottom: 0;
 }
 
 label {
@@ -215,7 +230,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -226,12 +241,13 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -514,6 +530,10 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+
+  .modal-body {
+    height: 826px;
   }
 }
 
