@@ -36,6 +36,7 @@ img {
 }
 .header-logo {
     float: left;
+    margin-left: 20px;
 }
 .main-navbar {
     float: right;
@@ -191,7 +192,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
-  height: 810px;
+  height: 850px;
 }
 
 #modal-valid {
