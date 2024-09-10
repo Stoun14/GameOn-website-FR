@@ -55,13 +55,28 @@ function numberControl(balise) {
   }
 }
 
-function radioBtn() {
+function isDateValid(balise) {
+  var date = new Date(balise);
+  if (date.toString() === "Invalid Date") {
+    return false;
+  }
+  return true;
+}
+
+function radioBtnChecked() {
+  /* const radioBtn = document.querySelectorAll('input[name="location"]');
+  radioBtn.forEach(bouton => {
+    if (bouton.checked) {
+      return true;
+    }
+    return false;
+  }); */
   let listeBtnradio = document.querySelectorAll('input[name="location"]')
   var location = ""
   for (let i = 0; i < listeBtnradio.length; i++) {
       if (listeBtnradio[i].checked) {
         location = listeBtnradio[i].value
-        return location
+        return location;
       }
   }
 }
@@ -73,27 +88,32 @@ form.addEventListener('submit', function(event) {
   const firstValue = document.getElementById("first").value;
   const lastValue = document.getElementById("last").value;
   const emailValue = document.getElementById("email").value;
+  const dateValue = document.getElementById("birthdate").value;
   const quantity = document.getElementById("quantity").value;
-  const town = radioBtn();
   const checkbox1 = document.getElementById("checkbox1").checked;
   let error = document.querySelector('.firstname');
   if (nameControl(firstValue)) {
     if (nameControl(lastValue)) {
       if (mailControl(emailValue)) {
-        if (numberControl(quantity)) {
-          if (checkbox1 === true) {
-            if (town !== "") {
-              validationModal();
+        if (isDateValid(dateValue)) {        
+          if (numberControl(quantity)) {
+            if (checkbox1 === true) {
+              if (radioBtnChecked() !== "") {
+                validationModal();
+              } else {
+                let error = document.querySelector('.town');
+                error.setAttribute('data-error-visible', 'true');
+              }
             } else {
-              let error = document.querySelector('.town');
+              let error = document.querySelector('.cgu');
               error.setAttribute('data-error-visible', 'true');
-            }
+            } 
           } else {
-            let error = document.querySelector('.cgu');
+            let error = document.querySelector('.tournament');
             error.setAttribute('data-error-visible', 'true');
-          } 
+          }
         } else {
-          let error = document.querySelector('.tournament');
+          let error = document.querySelector('.birthdate');
           error.setAttribute('data-error-visible', 'true');
         }
       } else {
